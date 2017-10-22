@@ -113,6 +113,7 @@ tesseract_version_before_(const char *cutoff)
           log::debug ("found tesseract-%1%") % result;
 
           return (0 > strverscmp (result, cutoff));
+          return (false);
         }
     }
 
