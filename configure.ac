@@ -576,9 +576,9 @@ AS_IF([test xno != "x$with_usb"],
    save_LDFLAGS="$LDFLAGS"
    CFLAGS="$CFLAGS $LIBUSB_CFLAGS"
    LDFLAGS="$LDFLAGS $LIBUSB_LIBS"
-   AC_CHECK_LIB([usb-1.0], [libusb_error_name],
+   AC_CHECK_FUNC([libusb_error_name],
      [AC_DEFINE([HAVE_LIBUSB_ERROR_NAME], [1])])
-   AC_CHECK_LIB([usb-1.0], [libusb_get_port_number],
+   AC_CHECK_FUNC([libusb_get_port_number],
      [AC_DEFINE([HAVE_LIBUSB_GET_PORT_NUMBER], [1])])
    LDFLAGS="$save_LDFLAGS"
    CFLAGS="$save_CFLAGS"],
@@ -610,10 +610,7 @@ AS_IF([test "`cd $srcdir && pwd`" != "`pwd`"],
      ['-I$(srcdir) -I$(top_builddir) -I$(top_srcdir) $(BOOST_CPPFLAGS)'])],
   [AC_SUBST([AM_CPPFLAGS],
      ['-I$(top_builddir) $(BOOST_CPPFLAGS)'])])
-
-#  Check if we can assume whether All Warnings Are Really Errors
-AS_IF([test xyes = x$ac_cv_cxx_compiler_gnu],
-  [gcc_AWARE=-Werror])
+     
 
 AC_SUBST([AM_CXXFLAGS], ["-Wall $gcc_AWARE $code_coverage_cxxflags"])
 AC_SUBST([AM_LDFLAGS], [""])
