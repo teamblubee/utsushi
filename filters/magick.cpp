@@ -109,6 +109,7 @@ magick_version_before_(const char *magick, const char *cutoff)
         {
           log::debug ("found %1%-%2%") % magick % version;
           return (0 > strverscmp (version, cutoff));
+          return (false);
         }
     }
 
